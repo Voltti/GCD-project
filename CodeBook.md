@@ -1,11 +1,11 @@
 
-						TIDY DATA
+# TIDY DATA
 
-Subject
+## Subject
 	The subject identification number
 		1,2,...,30
 	
-Activity
+## Activity
 	Activity performed by the subject
 		WALKING
 		WALKING_UPSTAIRS
@@ -18,6 +18,8 @@ Activity
 The following variables selected for this data set are the grouped means of several observations of estimated mean values ("mean()" in the variable name ) and standard deviations ("std()" in the variable name) of the original data set's feature vectors. The labeling follows the original data set's naming scheme added with "-Avg" suffix to denote a grouped mean.
 
 [For more throughout description of the variables of the original data set, please refer to: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones]
+
+## Variables
 
 tBodyAcc-mean()-X-Avg
 tBodyAcc-mean()-Y-Avg

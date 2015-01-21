@@ -8,7 +8,7 @@ run_analysis <- function() {
     ## Reading meta-data
     featuresAll <- read.table(file="features.txt")
     ## Getting an index vector for data selection. Features with "mean()" or "std()" in the name are selected.
-    featSelected <- grep("mean\\(\\)$|std\\(\\)$", featuresAll[,"V2"],ignore.case=TRUE)    
+    featSelected <- grep("mean\\(\\)|std\\(\\)", featuresAll[,"V2"],ignore.case=TRUE)    
     ## Generating label vector for later use. "-Avg" prefix added to all selected feature labels.
     Labels <- c("Subject", "Activity",as.character(paste(featuresAll[featSelected,"V2"],"-Avg", sep="")))  
     rm(featuresAll)
@@ -77,6 +77,7 @@ run_analysis <- function() {
         
     }
     
-    ## Returning the data.
-    raw_data[row_selection,]
+    ## Writing the tidied data into a file.
+    write.table(raw_data[row_selection,], file="tidy_data.txt", row.names=F,)
+    return("Done")
 }
