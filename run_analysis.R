@@ -1,7 +1,7 @@
 ## A funtion to analyse the "Human Activity Recognition Using Smartphones Data Set" (http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
 ## Funtion combines the subject, activity and feature data from the set. Only feature data with
 ## "mean()" or "std()" in the description label are included.
-## And average for each feature for every subject and every activity is calculated and returned as a data.frame.
+## And average for each feature for every subject and every activity is calculated and written on the disk as a tidy_data.txt file.
 
 run_analysis <- function() {
     
