@@ -10,7 +10,9 @@ run_analysis <- function() {
     ## Getting an index vector for data selection. Features with "mean()" or "std()" in the name are selected.
     featSelected <- grep("mean\\(\\)|std\\(\\)", featuresAll[,"V2"],ignore.case=TRUE)    
     ## Generating label vector for later use. "-Avg" prefix added to all selected feature labels.
-    Labels <- c("Subject", "Activity",as.character(paste(featuresAll[featSelected,"V2"],"-Avg", sep="")))  
+    Labels <- c("subject", "activity",as.character(paste(featuresAll[featSelected,"V2"],".avg", sep="")))  
+    # Tidying the variable names: removing hyphens and brackets.
+    Labels <- gsub("\\(\\)","",gsub("-",".",Labels))
     rm(featuresAll)
     
     ## Reading data: test
@@ -35,17 +37,17 @@ run_analysis <- function() {
     
     # Converting the integers referring to activities into character labels
     actLabels <- read.table(file="activity_labels.txt", stringsAsFactors = FALSE)
-    for(i in 1:length(raw_data$Activity)) {
+    for(i in 1:length(raw_data$activity)) {
         ## Comparing the data set's "Actitity" column's each cells with the actLabels first column.
         ## If there's a match with the activity variables(integers), then the corresponding character label
         ## is set to that data set's cell from the second column of actLabels.
-        raw_data[i,"Activity"] <- actLabels[raw_data[i,"Activity"] == actLabels[,"V1"], "V2"]
+        raw_data[i,"activity"] <- actLabels[raw_data[i,"activity"] == actLabels[,"V1"], "V2"]
     }
     
     ## For the data processing loop we set few assisting variables:
     ## subject_n for each unique test sucject in data set; activity_n for each unique activity.
     ## The process will subset data for each subject and activity pair.
-    subject_n <- unique(raw_data$Subject)
+    subject_n <- unique(raw_data$subject)
     activity_n <- as.character(actLabels$V2)
 
     ## The calculations are done inside the table(no assisting table is defined).
